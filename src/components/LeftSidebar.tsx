@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Sparkles,
   Shirt,
@@ -10,9 +10,9 @@ import {
   GraduationCap,
   CheckCircle2,
   ChevronRight,
-  BookOpen,
   Eye,
-  EyeOff
+  EyeOff,
+  Users
 } from 'lucide-react';
 import { CLASS_LESSONS } from '../data/lessons';
 
@@ -27,6 +27,9 @@ interface LeftSidebarProps {
   onSelectLesson: (stepNumber: number) => void;
 }
 
+const VISITOR_STORAGE_KEY = 'todaypick-fashion-demo-visitors-v2';
+const VISITOR_BASELINE = 1_200_000;
+
 export const LeftSidebar: React.FC<LeftSidebarProps> = ({
   currentTab,
   onSelectTab,
@@ -37,13 +40,50 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
   completedSteps,
   onSelectLesson,
 }) => {
+  const [visitorCount, setVisitorCount] = useState<number>(() => {
+    if (typeof window === 'undefined') return VISITOR_BASELINE;
+    const stored = Number(window.localStorage.getItem(VISITOR_STORAGE_KEY));
+    return Number.isFinite(stored) && stored >= VISITOR_BASELINE ? stored : VISITOR_BASELINE;
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.localStorage.setItem(VISITOR_STORAGE_KEY, String(visitorCount));
+  }, [visitorCount]);
+
+  useEffect(() => {
+    let timerId: number | undefined;
+
+    const scheduleIncrement = () => {
+      const delay = 3000 + Math.floor(Math.random() * 5001);
+      timerId = window.setTimeout(() => {
+        setVisitorCount((prev) => prev + 1 + Math.floor(Math.random() * 4));
+        scheduleIncrement();
+      }, delay);
+    };
+
+    scheduleIncrement();
+    return () => {
+      if (timerId) window.clearTimeout(timerId);
+    };
+  }, []);
+
+  const handleLessonButtonClick = (stepNumber: number) => {
+    onSelectLesson(stepNumber);
+
+    window.setTimeout(() => {
+      const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-learning-panel="true"]'));
+      const visiblePanel = panels.find((panel) => panel.offsetParent !== null) || panels[0];
+      visiblePanel?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+    }, 140);
+  };
+
   return (
     <aside
       id="target-left-menu"
       className="w-full h-full flex flex-col bg-white border-r border-slate-100 rounded-2xl p-4 shadow-sm"
     >
-      {/* Brand Logo & Tagline */}
-      <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+      <div className="flex items-center justify-between pb-4 mb-3 border-b border-slate-100">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-purple-200">
             <Sparkles className="w-5 h-5" />
@@ -60,7 +100,20 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
         </div>
       </div>
 
-      {/* Main Service Navigation */}
+      <div className="mb-4 rounded-2xl border border-purple-100 bg-gradient-to-br from-purple-50 via-white to-sky-50 p-3 text-center shadow-sm">
+        <div className="flex items-center justify-center gap-1.5 text-[11px] font-bold text-purple-700">
+          <Users className="w-3.5 h-3.5" />
+          누적 방문자 · DEMO
+        </div>
+        <div className="mt-1 text-3xl font-black tracking-tight bg-gradient-to-r from-purple-700 to-sky-500 bg-clip-text text-transparent tabular-nums">
+          {visitorCount.toLocaleString('ko-KR')}
+        </div>
+        <div className="mt-1 flex items-center justify-center gap-1.5 text-[10px] text-slate-500">
+          <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          화면 연출용 실시간 데모 카운터
+        </div>
+      </div>
+
       <div className="mb-6">
         <p className="text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2 px-2">
           서비스 메뉴
@@ -136,7 +189,6 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
           </button>
         </nav>
 
-        {/* Future Modules */}
         <div className="mt-4 pt-3 border-t border-slate-100">
           <p className="text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 px-2">
             출시 예정 (Future)
@@ -165,7 +217,6 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
         </div>
       </div>
 
-      {/* SEPARATED LEARNING / CLASS PRACTICE SECTION */}
       <div className="mt-auto pt-4 border-t-2 border-purple-100">
         <div className="flex items-center justify-between mb-2.5 px-1">
           <div className="flex items-center gap-1.5">
@@ -192,7 +243,6 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
           </button>
         </div>
 
-        {/* Progress bar */}
         <div className="mb-3 px-1">
           <div className="flex items-center justify-between text-[11px] text-slate-500 mb-1">
             <span>수업 진행 순서</span>
@@ -208,7 +258,6 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
           </div>
         </div>
 
-        {/* Step buttons list */}
         <div className="space-y-1 max-h-[260px] overflow-y-auto custom-scrollbar pr-1">
           {CLASS_LESSONS.map((lesson) => {
             const isCurrent = learningMode && activeStep === lesson.step;
@@ -218,7 +267,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               <button
                 key={lesson.step}
                 type="button"
-                onClick={() => onSelectLesson(lesson.step)}
+                onClick={() => handleLessonButtonClick(lesson.step)}
                 className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs transition-all text-left ${
                   isCurrent
                     ? 'bg-purple-600 text-white font-bold shadow-sm shadow-purple-200'
@@ -261,7 +310,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
         </div>
 
         <div className="mt-3 p-2 bg-purple-50/60 rounded-xl border border-purple-100 text-[11px] text-purple-900 leading-snug">
-          💡 각 스텝을 클릭하면 화면에 <strong>인터랙티브 안내 링</strong>이 나타나 실제 기획 및 구현 원리를 학습합니다.
+          💡 각 스텝을 클릭하면 <strong>해당 실습 설명 화면으로 자동 이동</strong>하고, 인터랙티브 안내 링으로 실제 구현 원리를 확인합니다.
         </div>
       </div>
     </aside>
