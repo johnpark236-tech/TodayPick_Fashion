@@ -26,7 +26,6 @@ interface LessonPanelProps {
   onPrevStep: () => void;
   onClose: () => void;
   onCompleteStep: (stepNumber: number) => void;
-  // Interactive tool triggers
   onOpenBuildInspect: () => void;
   onOpenGithubModal: () => void;
   onOpenVercelModal: () => void;
@@ -58,8 +57,10 @@ export const LessonPanel: React.FC<LessonPanelProps> = ({
   threeClickPhase = 'season',
 }) => {
   return (
-    <div className="bg-white/95 backdrop-blur-md rounded-2xl border-2 border-purple-200 shadow-xl p-4 sm:p-5 relative transition-all">
-      {/* Header bar */}
+    <div
+      data-learning-panel="true"
+      className="bg-white/95 backdrop-blur-md rounded-2xl border-2 border-purple-200 shadow-xl p-4 sm:p-5 relative transition-all scroll-mt-24"
+    >
       <div className="flex items-center justify-between pb-3 mb-3 border-b border-purple-100">
         <div className="flex items-center gap-2">
           <span className="w-6 h-6 rounded-lg bg-purple-600 text-white flex items-center justify-center text-xs font-black">
@@ -93,16 +94,13 @@ export const LessonPanel: React.FC<LessonPanelProps> = ({
         </div>
       </div>
 
-      {/* Lesson Content */}
       <div className="space-y-3 text-xs">
-        {/* Short Summary (Concise, not textbook-like) */}
         <div className="p-2.5 bg-purple-50/70 rounded-xl border border-purple-100">
           <p className="font-semibold text-purple-900 leading-relaxed">
             "{currentLesson.summary}"
           </p>
         </div>
 
-        {/* Concept description */}
         <div>
           <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
             핵심 개념
@@ -112,7 +110,6 @@ export const LessonPanel: React.FC<LessonPanelProps> = ({
           </p>
         </div>
 
-        {/* TodayPick Application */}
         <div>
           <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
             TodayPick 적용 사례
@@ -127,7 +124,6 @@ export const LessonPanel: React.FC<LessonPanelProps> = ({
           </ul>
         </div>
 
-        {/* Lesson 2 (3-Click Rule) Progress Tracker */}
         {currentLesson.step === 2 && (
           <div className="p-2.5 bg-indigo-50/70 rounded-xl border border-indigo-100 text-[11px]">
             <span className="font-bold text-indigo-900 block mb-1.5">🎯 3클릭 실시간 달성도:</span>
@@ -145,7 +141,6 @@ export const LessonPanel: React.FC<LessonPanelProps> = ({
           </div>
         )}
 
-        {/* Interactive Action Buttons per lesson */}
         <div className="pt-1">
           {currentLesson.step === 4 && (
             <button
@@ -234,7 +229,6 @@ export const LessonPanel: React.FC<LessonPanelProps> = ({
           )}
         </div>
 
-        {/* What to inspect instruction */}
         <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
           <div className="text-[11px] text-slate-500 font-medium">
             🎯 <span className="text-purple-700 font-semibold">{currentLesson.instruction}</span>
@@ -251,7 +245,6 @@ export const LessonPanel: React.FC<LessonPanelProps> = ({
         </div>
       </div>
 
-      {/* Navigation Footer */}
       <div className="flex items-center justify-between pt-3 mt-3 border-t border-purple-100">
         <button
           type="button"
