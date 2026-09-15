@@ -7,23 +7,15 @@
   }
 }
 
-@keyframes pulse-ring {
-  0% {
-    transform: scale(0.98);
-    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.45);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
-  }
-  100% {
-    transform: scale(0.98);
-    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
-  }
+/* Public site: learning/practice controls are intentionally hidden. */
+header button:has(.lucide-graduation-cap),
+header button[title="모바일 뷰포트 시뮬레이션 전환"] {
+  display: none !important;
 }
 
-.animate-pulse-ring {
-  animation: pulse-ring 2s infinite ease-in-out;
+/* Legacy mobile lesson bottom sheet. */
+div[class*="fixed"][class*="bottom-3"][class*="left-3"][class*="right-3"][class*="z-40"] {
+  display: none !important;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
