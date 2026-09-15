@@ -1,0 +1,6 @@
+{
+  "name": "TodayPick",
+  "description": "오늘 뭐 입지? AI 라이프스타일 코디 추천 및 웹사이트 제작 실습 인터랙티브 플랫폼",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
