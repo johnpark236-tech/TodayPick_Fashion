@@ -138,7 +138,7 @@
         <div class="tp-demo-counter-note">화면 연출용 데모 카운터 · 실제 분석값은 Vercel Analytics 연결 후 교체 가능합니다.</div>
       </div>
       <div class="tp-demo-counter-number-wrap">
-        <strong id="tp-demo-counter-number" aria-live="polite">12,480</strong>
+        <strong id="tp-demo-counter-number" aria-live="polite">1,200,000</strong>
         <span class="tp-demo-counter-unit">VISITS</span>
       </div>
     </section>
@@ -147,11 +147,11 @@
     <script type="module" src="/src/main.tsx"></script>
     <script>
       (() => {
-        const storageKey = 'todaypick-demo-visitor-count-v1';
+        const storageKey = 'todaypick-demo-visitor-count-v2';
         const numberEl = document.getElementById('tp-demo-counter-number');
         if (!numberEl) return;
 
-        const initialBase = 12480;
+        const initialBase = 1200000;
         const stored = Number.parseInt(localStorage.getItem(storageKey) || '', 10);
         let count = Number.isFinite(stored) && stored >= initialBase ? stored : initialBase;
 
