@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Sparkles,
   Shirt,
@@ -11,8 +11,7 @@ import {
   CheckCircle2,
   ChevronRight,
   Eye,
-  EyeOff,
-  Users
+  EyeOff
 } from 'lucide-react';
 import { CLASS_LESSONS } from '../data/lessons';
 
@@ -27,9 +26,6 @@ interface LeftSidebarProps {
   onSelectLesson: (stepNumber: number) => void;
 }
 
-const VISITOR_STORAGE_KEY = 'todaypick-fashion-demo-visitors-v2';
-const VISITOR_BASELINE = 1_200_000;
-
 export const LeftSidebar: React.FC<LeftSidebarProps> = ({
   currentTab,
   onSelectTab,
@@ -40,34 +36,6 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
   completedSteps,
   onSelectLesson,
 }) => {
-  const [visitorCount, setVisitorCount] = useState<number>(() => {
-    if (typeof window === 'undefined') return VISITOR_BASELINE;
-    const stored = Number(window.localStorage.getItem(VISITOR_STORAGE_KEY));
-    return Number.isFinite(stored) && stored >= VISITOR_BASELINE ? stored : VISITOR_BASELINE;
-  });
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    window.localStorage.setItem(VISITOR_STORAGE_KEY, String(visitorCount));
-  }, [visitorCount]);
-
-  useEffect(() => {
-    let timerId: number | undefined;
-
-    const scheduleIncrement = () => {
-      const delay = 3000 + Math.floor(Math.random() * 5001);
-      timerId = window.setTimeout(() => {
-        setVisitorCount((prev) => prev + 1 + Math.floor(Math.random() * 4));
-        scheduleIncrement();
-      }, delay);
-    };
-
-    scheduleIncrement();
-    return () => {
-      if (timerId) window.clearTimeout(timerId);
-    };
-  }, []);
-
   const handleLessonButtonClick = (stepNumber: number) => {
     onSelectLesson(stepNumber);
 
@@ -97,20 +65,6 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
             </div>
             <p className="text-[11px] text-slate-600 font-medium">AI 라이프스타일 큐레이터</p>
           </div>
-        </div>
-      </div>
-
-      <div className="mb-4 rounded-2xl border border-purple-100 bg-gradient-to-br from-purple-50 via-white to-sky-50 p-3 text-center shadow-sm">
-        <div className="flex items-center justify-center gap-1.5 text-[11px] font-bold text-purple-700">
-          <Users className="w-3.5 h-3.5" />
-          누적 방문자 · DEMO
-        </div>
-        <div className="mt-1 text-3xl font-black tracking-tight bg-gradient-to-r from-purple-700 to-sky-500 bg-clip-text text-transparent tabular-nums">
-          {visitorCount.toLocaleString('ko-KR')}
-        </div>
-        <div className="mt-1 flex items-center justify-center gap-1.5 text-[10px] text-slate-500">
-          <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          화면 연출용 실시간 데모 카운터
         </div>
       </div>
 
