@@ -26,7 +26,6 @@
   animation: pulse-ring 2s infinite ease-in-out;
 }
 
-/* Custom sleek scrollbar for panels */
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -40,4 +39,29 @@
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(148, 163, 184, 0.5);
+}
+
+.coupang-item-row {
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+  transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.coupang-item-row:hover,
+.coupang-item-row:focus-visible {
+  background: rgba(245, 63, 63, 0.07);
+  transform: translateX(2px);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(245, 63, 63, 0.12);
+}
+
+.coupang-search-hint {
+  margin-left: 8px;
+  color: #ef4444;
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
 }
