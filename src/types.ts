@@ -19,7 +19,7 @@ export interface OutfitItem {
   age: AgeGroup;
   imageUrl: string;
   setId: string;
-  sheetUrl: string;
+  sheetUrl?: string;
   cutIndex: number; // 1..10
   styleCategory: string;
   tags: string[];

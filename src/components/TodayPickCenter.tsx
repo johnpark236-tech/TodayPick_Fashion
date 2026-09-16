@@ -297,11 +297,11 @@ export const TodayPickCenter: React.FC<TodayPickCenterProps> = ({
           className="bg-white rounded-2xl border border-slate-100 shadow-md overflow-hidden relative group transition-all"
         >
           {/* Main Visual Image with floating badges */}
-          <div className="relative w-full aspect-[4/5] sm:aspect-[16/11] bg-slate-100 overflow-hidden">
+          <div className="relative w-full aspect-[4/5] sm:aspect-[16/11] bg-slate-900 overflow-hidden flex items-center justify-center">
             <img
               src={currentOutfit.imageUrl}
               alt={currentOutfit.title}
-              className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-500"
+              className="w-full h-full object-contain object-center group-hover:scale-102 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
 
@@ -504,11 +504,11 @@ export const TodayPickCenter: React.FC<TodayPickCenterProps> = ({
                       : 'border-slate-100 hover:border-purple-300'
                   }`}
                 >
-                  <div className="aspect-[3/4] bg-slate-100 relative">
+                  <div className="aspect-[3/4] bg-slate-900 relative flex items-center justify-center overflow-hidden">
                     <img
                       src={look.imageUrl}
                       alt={look.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform"
                       loading="lazy"
                     />
                     <span className="absolute top-1.5 left-1.5 bg-black/60 backdrop-blur-xs text-white text-[10px] font-bold px-1.5 py-0.5 rounded">
@@ -561,11 +561,11 @@ export const TodayPickCenter: React.FC<TodayPickCenterProps> = ({
                       : 'border-slate-100 hover:border-purple-200 opacity-70 hover:opacity-100'
                   }`}
                 >
-                  <div className="w-16 h-20 bg-slate-100 relative">
+                  <div className="w-16 h-20 bg-slate-900 relative flex items-center justify-center overflow-hidden">
                     <img
                       src={item.imageUrl}
                       alt={item.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       loading="lazy"
                     />
                     <span className="absolute bottom-1 right-1 bg-black/70 text-white text-[9px] font-bold px-1 rounded">

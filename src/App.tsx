@@ -37,14 +37,14 @@ export default function App() {
   const [currentTab, setCurrentTab] = useState<'today' | 'top' | 'saved' | 'about'>('today');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Learning Mode states
-  const [learningMode, setLearningMode] = useState<boolean>(true);
+  // Learning Mode states (disabled on public site)
+  const [learningMode, setLearningMode] = useState<boolean>(false);
   const [activeStep, setActiveStep] = useState<number>(1);
   const [completedSteps, setCompletedSteps] = useState<number[]>([1]);
-  const [targetId, setTargetId] = useState<string | null>('target-center-app');
-  const [targetLabel, setTargetLabel] = useState<string>('가운데 TodayPick 앱을 확인하세요');
+  const [targetId, setTargetId] = useState<string | null>(null);
+  const [targetLabel, setTargetLabel] = useState<string>('');
   const [isTargetCompleted, setIsTargetCompleted] = useState<boolean>(false);
-  const [mobileLessonSheetOpen, setMobileLessonSheetOpen] = useState(true);
+  const [mobileLessonSheetOpen, setMobileLessonSheetOpen] = useState(false);
 
   // 3-Click Exercise state
   const [threeClickPhase, setThreeClickPhase] = useState<'season' | 'gender_age' | 'outfit' | 'done'>('season');
@@ -88,21 +88,39 @@ export default function App() {
     return CLASS_LESSONS.find((l) => l.step === activeStep) || CLASS_LESSONS[0];
   }, [activeStep]);
 
-  // Ten-looks set matching the current outfit's setId
+  // Ten-looks set matching the current outfit's setId (sorted by cutIndex, strictly within set)
   const tenLooksSet = useMemo(() => {
-    const matching = allOutfits.filter((o) => o.setId === currentOutfit.setId);
+    const matching = allOutfits
+      .filter((o) => o.setId === currentOutfit.setId)
+      .sort((a, b) => a.cutIndex - b.cutIndex);
     if (matching.length > 0) return matching;
-    return allOutfits.slice(0, 10);
-  }, [allOutfits, currentOutfit.setId]);
+    return [currentOutfit];
+  }, [allOutfits, currentOutfit]);
+
+  // Safe filter matcher without cross-season fallback
+  const findMatchingOutfit = useCallback((season: Season, gender: Gender, age: AgeGroup): OutfitItem | null => {
+    // 1. Exact match: season + gender + age
+    const exact = allOutfits.find((o) => o.season === season && o.gender === gender && o.age === age);
+    if (exact) return exact;
+
+    // 2. Same season + same gender
+    const sameSeasonGender = allOutfits.find((o) => o.season === season && o.gender === gender);
+    if (sameSeasonGender) return sameSeasonGender;
+
+    // 3. Same season only (strictly forbidden to cross seasons)
+    const sameSeason = allOutfits.find((o) => o.season === season);
+    if (sameSeason) return sameSeason;
+
+    return null;
+  }, [allOutfits]);
 
   // Filter outfits when user changes filters
   const handleSeasonChange = (season: Season) => {
     setSelectedSeason(season);
-    // Find outfit matching or closest
-    const match = allOutfits.find((o) => o.season === season && o.gender === selectedGender)
-      || allOutfits.find((o) => o.season === season)
-      || allOutfits[0];
-    setCurrentOutfit(match);
+    const match = findMatchingOutfit(season, selectedGender, selectedAge);
+    if (match) {
+      setCurrentOutfit(match);
+    }
 
     // If in 3-click lesson step 2
     if (activeStep === 2 && threeClickPhase === 'season') {
@@ -115,10 +133,10 @@ export default function App() {
 
   const handleGenderChange = (gender: Gender) => {
     setSelectedGender(gender);
-    const match = allOutfits.find((o) => o.season === selectedSeason && o.gender === gender)
-      || allOutfits.find((o) => o.gender === gender)
-      || allOutfits[0];
-    setCurrentOutfit(match);
+    const match = findMatchingOutfit(selectedSeason, gender, selectedAge);
+    if (match) {
+      setCurrentOutfit(match);
+    }
 
     if (activeStep === 2 && threeClickPhase === 'gender_age') {
       setThreeClickPhase('outfit');
@@ -130,6 +148,11 @@ export default function App() {
 
   const handleAgeChange = (age: AgeGroup) => {
     setSelectedAge(age);
+    const match = findMatchingOutfit(selectedSeason, selectedGender, age);
+    if (match) {
+      setCurrentOutfit(match);
+    }
+
     if (activeStep === 2 && threeClickPhase === 'gender_age') {
       setThreeClickPhase('outfit');
       setTargetId('target-main-outfit');
