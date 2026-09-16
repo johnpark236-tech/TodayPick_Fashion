@@ -1,6 +1,6 @@
 export type Season = 'spring' | 'summer' | 'autumn' | 'winter';
 export type Gender = 'female' | 'male' | 'unisex';
-export type AgeGroup = '10s' | '20s' | '30s' | '40s' | '50s';
+export type AgeGroup = '10s' | '20s' | '30s' | '40s' | '50s' | '60s';
 
 export interface OutfitPiece {
   top: string;

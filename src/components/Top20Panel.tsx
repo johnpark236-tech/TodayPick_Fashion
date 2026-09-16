@@ -26,7 +26,8 @@ const AGE_LABELS: Record<string, string> = {
   '20s': '20대',
   '30s': '30대',
   '40s': '40대',
-  '50s': '50대+',
+  '50s': '50대',
+  '60s': '60대',
 };
 
 export const Top20Panel: React.FC<Top20PanelProps> = ({

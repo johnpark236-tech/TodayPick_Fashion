@@ -127,7 +127,8 @@ export const TodayPickCenter: React.FC<TodayPickCenterProps> = ({
     { id: '20s', label: '20대' },
     { id: '30s', label: '30대' },
     { id: '40s', label: '40대' },
-    { id: '50s', label: '50대+' },
+    { id: '50s', label: '50대' },
+    { id: '60s', label: '60대' },
   ];
 
   return (
