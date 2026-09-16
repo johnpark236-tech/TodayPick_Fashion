@@ -97,27 +97,17 @@ export default function App() {
     return [currentOutfit];
   }, [allOutfits, currentOutfit]);
 
-  // Safe filter matcher without cross-season fallback
-  const findMatchingOutfit = useCallback((season: Season, gender: Gender, age: AgeGroup): OutfitItem | null => {
-    // 1. Exact match: season + gender + age
-    const exact = allOutfits.find((o) => o.season === season && o.gender === gender && o.age === age);
-    if (exact) return exact;
-
-    // 2. Same season + same gender
-    const sameSeasonGender = allOutfits.find((o) => o.season === season && o.gender === gender);
-    if (sameSeasonGender) return sameSeasonGender;
-
-    // 3. Same season only (strictly forbidden to cross seasons)
-    const sameSeason = allOutfits.find((o) => o.season === season);
-    if (sameSeason) return sameSeason;
-
-    return null;
-  }, [allOutfits]);
-
-  // Filter outfits when user changes filters
+  // Exact filter matcher: strictly no cross-season, no cross-age, no cross-gender fallback
   const handleSeasonChange = (season: Season) => {
     setSelectedSeason(season);
-    const match = findMatchingOutfit(season, selectedGender, selectedAge);
+    // Try exact match first
+    let match = allOutfits.find((o) => o.season === season && o.gender === selectedGender && o.age === selectedAge);
+    // If switching season and no exact match for this age/gender in target season,
+    // ensure we safely switch to target season data so we NEVER show another season's images:
+    if (!match && currentOutfit.season !== season) {
+      match = allOutfits.find((o) => o.season === season && o.gender === selectedGender)
+        || allOutfits.find((o) => o.season === season);
+    }
     if (match) {
       setCurrentOutfit(match);
     }
@@ -133,7 +123,8 @@ export default function App() {
 
   const handleGenderChange = (gender: Gender) => {
     setSelectedGender(gender);
-    const match = findMatchingOutfit(selectedSeason, gender, selectedAge);
+    // Strict exact match only: no cross-gender fallback
+    const match = allOutfits.find((o) => o.season === selectedSeason && o.gender === gender && o.age === selectedAge);
     if (match) {
       setCurrentOutfit(match);
     }
@@ -148,7 +139,8 @@ export default function App() {
 
   const handleAgeChange = (age: AgeGroup) => {
     setSelectedAge(age);
-    const match = findMatchingOutfit(selectedSeason, selectedGender, age);
+    // Strict exact match only: no cross-age fallback
+    const match = allOutfits.find((o) => o.season === selectedSeason && o.gender === selectedGender && o.age === age);
     if (match) {
       setCurrentOutfit(match);
     }

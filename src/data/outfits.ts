@@ -718,6 +718,242 @@ export const OUTFIT_SETS: OutfitItem[] = [
       accessory: '크림 머플러'
     },
     likes: 1140
+  },
+
+  // SET 4: 2026 겨울 여성 10대 데일리 룩북 (10컷) - Verified TodayPick Production Set
+  {
+    id: 'winter-female-10-look01',
+    title: '아이보리 패딩 & 스트레이트 데님 룩',
+    description: '아이보리 패딩 자켓, 페일 블루 머플러, 스트레이트 라이트 데님, 화이트 윈터 스니커즈',
+    season: 'winter',
+    gender: 'female',
+    age: '10s',
+    imageUrl: 'https://storage.googleapis.com/todaypick-daily-looks-363284724091/production/assets/winter/260915/female/10/look_01_c79bcdf406c4.webp',
+    setId: 'winter_female_10_260915_b0af78e2',
+    sheetUrl: '',
+    cutIndex: 1,
+    styleCategory: '윈터 캐주얼',
+    tags: ['아이보리패딩', '스트레이트데님', '페일블루머플러', '스니커즈'],
+    colorPalette: ['#F5F5F0', '#A4C3D2', '#6B8EAD', '#FFFFFF'],
+    tempRange: '-5°C ~ 3°C',
+    pieces: {
+      outer: '아이보리 패딩 자켓',
+      top: '베이직 이너 니트',
+      bottom: '스트레이트 라이트 데님',
+      shoes: '화이트 윈터 스니커즈',
+      accessory: '페일 블루 머플러'
+    },
+    likes: 1080
+  },
+  {
+    id: 'winter-female-10-look02',
+    title: '차콜 울 더플 코트 룩',
+    description: '차콜 울 더플 코트, 그레이 니트 머플러, 와이드 그레이 슬랙스, 화이트 스니커즈',
+    season: 'winter',
+    gender: 'female',
+    age: '10s',
+    imageUrl: 'https://storage.googleapis.com/todaypick-daily-looks-363284724091/production/assets/winter/260915/female/10/look_02_f364bd81e2a3.webp',
+    setId: 'winter_female_10_260915_b0af78e2',
+    sheetUrl: '',
+    cutIndex: 2,
+    styleCategory: '스쿨 윈터',
+    tags: ['더플코트', '울코트', '와이드슬랙스', '니트머플러'],
+    colorPalette: ['#36454F', '#808080', '#D3D3D3', '#FFFFFF'],
+    tempRange: '-7°C ~ 2°C',
+    pieces: {
+      outer: '차콜 울 더플 코트',
+      top: '기모 터틀넥 니트',
+      bottom: '와이드 그레이 슬랙스',
+      shoes: '화이트 스니커즈',
+      accessory: '그레이 니트 머플러'
+    },
+    likes: 990
+  },
+  {
+    id: 'winter-female-10-look03',
+    title: '파스텔 핑크 가디건 & 플리츠 스커트 룩',
+    description: '파스텔 핑크 가디건, 크림 터틀넥, 다크 플리츠 스커트, 타이즈, 웜 앵클 부츠',
+    season: 'winter',
+    gender: 'female',
+    age: '10s',
+    imageUrl: 'https://storage.googleapis.com/todaypick-daily-looks-363284724091/production/assets/winter/260915/female/10/look_03_b759738099f2.webp',
+    setId: 'winter_female_10_260915_b0af78e2',
+    sheetUrl: '',
+    cutIndex: 3,
+    styleCategory: '걸리시 윈터',
+    tags: ['핑크가디건', '크림터틀넥', '플리츠스커트', '앵클부츠'],
+    colorPalette: ['#FADADD', '#FFFDD0', '#2F353B', '#4A3B32'],
+    tempRange: '-2°C ~ 6°C',
+    pieces: {
+      outer: '파스텔 핑크 가디건',
+      top: '크림 터틀넥',
+      bottom: '다크 플리츠 스커트 (타이즈)',
+      shoes: '웜 앵클 부츠'
+    },
+    likes: 920
+  },
+  {
+    id: 'winter-female-10-look04',
+    title: '크림 노르딕 니트 & 와이드 진 룩',
+    description: '크림 노르딕 니트 스웨터, 페일 블루 와이드 진, 화이트 스니커즈, 브라운 스웨이드 토트백',
+    season: 'winter',
+    gender: 'female',
+    age: '10s',
+    imageUrl: 'https://storage.googleapis.com/todaypick-daily-looks-363284724091/production/assets/winter/260915/female/10/look_04_8accdda1929e.webp',
+    setId: 'winter_female_10_260915_b0af78e2',
+    sheetUrl: '',
+    cutIndex: 4,
+    styleCategory: '노르딕 캐주얼',
+    tags: ['노르딕니트', '니트스웨터', '와이드진', '스니커즈'],
+    colorPalette: ['#FFF8DC', '#B0C4DE', '#8B5A2B', '#FFFFFF'],
+    tempRange: '-4°C ~ 4°C',
+    pieces: {
+      top: '크림 노르딕 니트 스웨터',
+      bottom: '페일 블루 와이드 진',
+      shoes: '화이트 스니커즈',
+      accessory: '브라운 스웨이드 토트백'
+    },
+    likes: 960
+  },
+  {
+    id: 'winter-female-10-look05',
+    title: '네이비 더플 코트 & 타탄 체크 머플러 룩',
+    description: '네이비 더플 코트, 레드 타탄 체크 머플러, 다크 플리츠 스커트, 블랙 윈터 부츠',
+    season: 'winter',
+    gender: 'female',
+    age: '10s',
+    imageUrl: 'https://storage.googleapis.com/todaypick-daily-looks-363284724091/production/assets/winter/260915/female/10/look_05_3befa3ab2b28.webp',
+    setId: 'winter_female_10_260915_b0af78e2',
+    sheetUrl: '',
+    cutIndex: 5,
+    styleCategory: '프레피 윈터',
+    tags: ['더플코트', '타탄체크머플러', '플리츠스커트', '윈터부츠'],
+    colorPalette: ['#000080', '#B22222', '#2F4F4F', '#000000'],
+    tempRange: '-6°C ~ 2°C',
+    pieces: {
+      outer: '네이비 더플 코트',
+      top: '베이직 울 니트',
+      bottom: '다크 플리츠 스커트',
+      shoes: '블랙 윈터 부츠',
+      accessory: '레드 타탄 체크 머플러'
+    },
+    likes: 1040
+  },
+  {
+    id: 'winter-female-10-look06',
+    title: '크림 셰르파 플리스 & 니트 원피스 룩',
+    description: '크림 셰르파 플리스 자켓, 베이지 니트 원피스, 레깅스, 브라운 윈터 부츠',
+    season: 'winter',
+    gender: 'female',
+    age: '10s',
+    imageUrl: 'https://storage.googleapis.com/todaypick-daily-looks-363284724091/production/assets/winter/260915/female/10/look_06_f24119b4df60.webp',
+    setId: 'winter_female_10_260915_b0af78e2',
+    sheetUrl: '',
+    cutIndex: 6,
+    styleCategory: '코지 셰르파',
+    tags: ['셰르파플리스', '니트원피스', '레깅스', '윈터부츠'],
+    colorPalette: ['#FFFDD0', '#F5F5DC', '#8B4513', '#2B2B2B'],
+    tempRange: '-3°C ~ 5°C',
+    pieces: {
+      outer: '크림 셰르파 플리스 자켓',
+      top: '베이지 니트 원피스',
+      bottom: '웜 레깅스',
+      shoes: '브라운 윈터 부츠'
+    },
+    likes: 880
+  },
+  {
+    id: 'winter-female-10-look07',
+    title: '블랙 패딩 베스트 & 카고 팬츠 룩',
+    description: '블랙 패딩 베스트, 그레이 후디, 차콜 카고 팬츠, 화이트 청키 스니커즈',
+    season: 'winter',
+    gender: 'female',
+    age: '10s',
+    imageUrl: 'https://storage.googleapis.com/todaypick-daily-looks-363284724091/production/assets/winter/260915/female/10/look_07_ab3e323cc882.webp',
+    setId: 'winter_female_10_260915_b0af78e2',
+    sheetUrl: '',
+    cutIndex: 7,
+    styleCategory: '스트릿 틴 윈터',
+    tags: ['패딩베스트', '그레이후디', '카고팬츠', '청키스니커즈'],
+    colorPalette: ['#1C1C1C', '#808080', '#36454F', '#FFFFFF'],
+    tempRange: '-2°C ~ 6°C',
+    pieces: {
+      outer: '블랙 패딩 베스트',
+      top: '그레이 후디',
+      bottom: '차콜 카고 팬츠',
+      shoes: '화이트 청키 스니커즈'
+    },
+    likes: 910
+  },
+  {
+    id: 'winter-female-10-look08',
+    title: '라이트 블루 플리스 & 와이드 팬츠 룩',
+    description: '라이트 블루 플리스 집업 자켓, 크림 터틀넥, 차콜 와이드 팬츠, 탠 플랫폼 슈즈',
+    season: 'winter',
+    gender: 'female',
+    age: '10s',
+    imageUrl: 'https://storage.googleapis.com/todaypick-daily-looks-363284724091/production/assets/winter/260915/female/10/look_08_cec99d0f5892.webp',
+    setId: 'winter_female_10_260915_b0af78e2',
+    sheetUrl: '',
+    cutIndex: 8,
+    styleCategory: '플리스 캐주얼',
+    tags: ['라이트블루플리스', '크림터틀넥', '와이드팬츠', '플랫폼슈즈'],
+    colorPalette: ['#ADD8E6', '#FFFFF0', '#36454F', '#D2B48C'],
+    tempRange: '-1°C ~ 7°C',
+    pieces: {
+      outer: '라이트 블루 플리스 집업 자켓',
+      top: '크림 터틀넥',
+      bottom: '차콜 와이드 팬츠',
+      shoes: '탠 플랫폼 슈즈'
+    },
+    likes: 850
+  },
+  {
+    id: 'winter-female-10-look09',
+    title: '브라운 무스탕 & 체크 스커트 룩',
+    description: '브라운 무스탕 시어링 자켓, 크림 스웨터, 체크 스커트, 레이스업 윈터 부츠',
+    season: 'winter',
+    gender: 'female',
+    age: '10s',
+    imageUrl: 'https://storage.googleapis.com/todaypick-daily-looks-363284724091/production/assets/winter/260915/female/10/look_09_03a90e2975a2.webp',
+    setId: 'winter_female_10_260915_b0af78e2',
+    sheetUrl: '',
+    cutIndex: 9,
+    styleCategory: '무스탕 윈터',
+    tags: ['무스탕자켓', '크림스웨터', '체크스커트', '레이스업부츠'],
+    colorPalette: ['#8B4513', '#FFFDD0', '#5C4033', '#1C1C1C'],
+    tempRange: '-6°C ~ 2°C',
+    pieces: {
+      outer: '브라운 무스탕 시어링 자켓',
+      top: '크림 스웨터',
+      bottom: '클래식 체크 스커트',
+      shoes: '레이스업 윈터 부츠'
+    },
+    likes: 970
+  },
+  {
+    id: 'winter-female-10-look10',
+    title: '파스텔 핑크 울 코트 룩',
+    description: '롱 파스텔 핑크 울 코트, 크림 머플러, 블랙 와이드 트라우저, 화이트 스니커즈',
+    season: 'winter',
+    gender: 'female',
+    age: '10s',
+    imageUrl: 'https://storage.googleapis.com/todaypick-daily-looks-363284724091/production/assets/winter/260915/female/10/look_10_c13a72664abb.webp',
+    setId: 'winter_female_10_260915_b0af78e2',
+    sheetUrl: '',
+    cutIndex: 10,
+    styleCategory: '엘레강스 틴 윈터',
+    tags: ['롱울코트', '크림머플러', '와이드트라우저', '스니커즈'],
+    colorPalette: ['#FFD1DC', '#FFFFF0', '#1C1C1C', '#FFFFFF'],
+    tempRange: '-5°C ~ 3°C',
+    pieces: {
+      outer: '롱 파스텔 핑크 울 코트',
+      top: '슬림 터틀넥 니트',
+      bottom: '블랙 와이드 트라우저',
+      shoes: '화이트 스니커즈',
+      accessory: '크림 머플러'
+    },
+    likes: 1020
   }
 ];
 
